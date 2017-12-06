@@ -128,14 +128,14 @@ describe('PUT /contacts/:id', () => {
             })
 
             //  เอาไว้เช็คว่า contacts ID6 มีค่าเหมือนที่ส่งไปไหม
-        // request(app).get('/contacts')
-        //     .expect(200)
-        //     .then((res) => {
-        //         let contact = res.body
-        //         //console.log(contact)
-        //         expect(contact[6]).toEqual(mydata2)
-        //         done()
-        //     })
+        request(app).get('/contacts')
+            .expect(200)
+            .then((res) => {
+                let contact = res.body
+                //console.log(contact)
+                expect(contact[6]).toEqual(mydata2)
+                done()
+            })
     })
 })
 
@@ -143,18 +143,18 @@ describe('DELETE /contacts/:id', () => {
     it('delete remove contact id = [6]', (done) => {
 
             //  เอาไว้เช็ค contacts ทั้งหมดก่อน โดยเก็บค่าของ ID6 และเก็บจำนวน contacts ทั้งหมด
-        // let c1 = 0
-        // let ct1 = []
-        //
-        // request(app).get('/contacts')
-        //     .expect(200)
-        //     .then((res) => {
-        //         let contact = res.body
-        //         let count = contact.length
-        //         c1 = count
-        //         ct1 = contact[6]
-        //         done()
-        //     })
+        let c1 = 0
+        let ct1 = []
+        
+        request(app).get('/contacts')
+            .expect(200)
+            .then((res) => {
+                let contact = res.body
+                let count = contact.length
+                c1 = count
+                ct1 = contact[6]
+                done()
+            })
 
         request(app).delete('/contacts/6')
             .expect(204)
@@ -165,16 +165,16 @@ describe('DELETE /contacts/:id', () => {
             //  เช็ค contacts หลังลบ ID6 ไปแล้ว โดยเก็บข้อมูลของ ID6 ปัจจุบันและเก็บจำนวน contacts ทั้งหมดของปัจจุบัน
             //  แล้วค่อยเอามาเปรียบเทียบ ค่าจำนวน contacts จะต้องไม่เท่ากันเพราะ ลบไป1 contact
             //  และมาเช็คว่า ข้อมูลของ ID6 อันก่อนลบ กับ หลังลบ ค่าที่ได้จะต้องไม่เท่ากัน 
-        // request(app).get('/contacts')
-        //     .expect(200)
-        //     .then((res) => {
-        //         let contact = res.body
-        //         let c2 = contact.length
-        //         let ct2 = contact[6]
-        //
-        //         expect(c1).not.toEqual(c2)
-        //         expect(ct1).not.toEqual(ct2)
-        //         done()
-        //     })
+        request(app).get('/contacts')
+            .expect(200)
+            .then((res) => {
+                let contact = res.body
+                let c2 = contact.length
+                let ct2 = contact[6]
+        
+                expect(c1).not.toEqual(c2)
+                expect(ct1).not.toEqual(ct2)
+                done()
+            })
     })
 })
